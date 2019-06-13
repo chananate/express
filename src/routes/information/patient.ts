@@ -1,4 +1,4 @@
-import { Patient } from './../../models/information/patient';
+import { Patient } from '../../models/information/patient';
 /// <reference path="../../../typings.d.ts" />
 
 import * as express from 'express';
