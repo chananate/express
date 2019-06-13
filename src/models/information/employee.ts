@@ -20,5 +20,18 @@ export class Employee {
     return db('employee_information')
       .update({ data })
       .where("employee_personalId", id);
-}
+  }
+
+  updateEmpTel(db:Knex,id:string,tel:string){
+    return db('employee_information')
+      .update(id)
+      .where("employee_tel",tel);
+  }
+
+  delEmployee(db: Knex,id:string){
+    return db('employee_information')
+    .del()
+    .where('employee_personalId',id);
+  }
+
 }

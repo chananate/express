@@ -49,8 +49,44 @@ router.post('/employee-insert', async (req: Request, res: Response) => {
       console.log(error.message);
       res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
   }
+});
 
-  
+router.post('/employee-update', async (req: Request, res: Response) => {
+  let db = req.db;
+  const data = req.body.data;
+  const id = req.body.id;
+  try {
+      const result = await employeeModel.updateEmployee(db,data,id);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  } catch (error) {
+      console.log(error.message);
+      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+  }
+});
+
+router.post('/employee-update-tel', async (req: Request, res: Response) => {
+  let db = req.db;
+  const id = req.body.id;
+  const tel = req.body.tel;
+  try {
+      const result = await employeeModel.updateEmpTel(db,id,tel);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  } catch (error) {
+      console.log(error.message);
+      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+  }
+});
+
+router.post('/employee-del', async (req: Request, res: Response) => {
+  let db = req.db;
+  const id = req.body.id;
+  try {
+      const result = await employeeModel.delEmployee(db,id);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  } catch (error) {
+      console.log(error.message);
+      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+  }
 });
 
 

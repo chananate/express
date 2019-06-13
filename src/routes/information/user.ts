@@ -14,7 +14,7 @@ const jwt = new Jwt();
 
 const router: Router = Router();
 
-router.get('user-all', async (req: Request, res: Response) => {
+router.get('/user-all', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
   try {
@@ -26,7 +26,7 @@ router.get('user-all', async (req: Request, res: Response) => {
   }
 });
 
-  router.post('user', async (req: Request, res: Response) => {
+  router.post('/user', async (req: Request, res: Response) => {
     let db = req.db;
     const username = req.body.username;
     try {
@@ -38,7 +38,7 @@ router.get('user-all', async (req: Request, res: Response) => {
     }
   });
 
-  router.get('user-insert', async (req: Request, res: Response) => {
+  router.get('/user-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
   try {
@@ -50,7 +50,7 @@ router.get('user-all', async (req: Request, res: Response) => {
   }
 });
 
-  router.get('user-update', async (req: Request, res: Response) => {
+  router.get('/user-update', async (req: Request, res: Response) => {
     let db = req.db;
     const data = req.body.data;
     const username = req.body.username;
@@ -63,7 +63,7 @@ router.get('user-all', async (req: Request, res: Response) => {
     }
 });
 
-  router.get('user-delete', async (req: Request, res: Response) => {
+  router.get('/user-delete', async (req: Request, res: Response) => {
   let db = req.db;
   const username = req.body.username;
   try {
