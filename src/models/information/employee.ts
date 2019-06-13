@@ -8,7 +8,7 @@ export class Employee {
 
   getEmployee(db: Knex,perId:string) {
     return db('employee_information')
-    .where(perId);
+    .where('employee_personalId',perId);
   }
 
   insertEmployee(db: Knex,data) {
