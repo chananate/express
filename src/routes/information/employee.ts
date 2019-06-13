@@ -52,12 +52,13 @@ router.post('/employee-insert', async (req: Request, res: Response) => {
   const employee_bd = req.body.employee_bd;
   const employee_address = req.body.employee_address;
   const employee_religion = req.body.employee_religion;
+  const employee_tel = req.body.employee_tel;
   try {
       const result = await employeeModel
       //.insertEmployee(db,data);
       .insertEmployee(db,
         employee_personalId,employee_position,employee_type,employee_title,
-        employee_name,employee_surname,employee_bd,employee_address,employee_religion);
+        employee_name,employee_surname,employee_bd,employee_address,employee_religion,employee_tel);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
@@ -68,9 +69,9 @@ router.post('/employee-insert', async (req: Request, res: Response) => {
 router.post('/employee-update', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
-  const id = req.body.id;
+  const employee_personalId = req.body.employee_personalId;
   try {
-      const result = await employeeModel.updateEmployee(db,data,id);
+      const result = await employeeModel.updateEmployee(db,data,employee_personalId);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
@@ -78,18 +79,18 @@ router.post('/employee-update', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/employee-update-tel', async (req: Request, res: Response) => {
-  let db = req.db;
-  const id = req.body.id;
-  const tel = req.body.tel;
-  try {
-      const result = await employeeModel.updateEmpTel(db,id,tel);
-      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
-  } catch (error) {
-      console.log(error.message);
-      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
-  }
-});
+// router.post('/employee-update-tel', async (req: Request, res: Response) => {
+//   let db = req.db;
+//   const id = req.body.id;
+//   const tel = req.body.tel;
+//   try {
+//       const result = await employeeModel.updateEmpTel(db,id,tel);
+//       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+//   } catch (error) {
+//       console.log(error.message);
+//       res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+//   }
+// });
 
 router.post('/employee-del', async (req: Request, res: Response) => {
   let db = req.db;

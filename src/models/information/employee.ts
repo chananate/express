@@ -6,9 +6,9 @@ export class Employee {
     return db('employee_information');
   }
 
-  getEmployee(db: Knex,perId:string) {
+  getEmployee(db: Knex,employee_personalId:string) {
     return db('employee_information')
-    .where('employee_personalId',perId);
+    .where('employee_personalId',employee_personalId);
   }
 
   insertEmployee(db: Knex, 
@@ -21,31 +21,26 @@ export class Employee {
     employee_surname:string,
     employee_bd:Date,
     employee_address:string,
-    employee_religion:string
+    employee_religion:string,
+    employee_tel:string
     ) {
     return db('employee_information')
     //.insert(data)
     .insert({employee_personalId,employee_type,employee_position,
       employee_title,employee_name,employee_surname,
-      employee_bd,employee_address,employee_religion});
+      employee_bd,employee_address,employee_religion,employee_tel});
   }
 
-  updateEmployee(db: Knex,data,id: string) {
+  updateEmployee(db: Knex,data,employee_personalId: string) {
     return db('employee_information')
       .update({ data })
-      .where("employee_personalId", id);
+      .where("employee_personalId", employee_personalId);
   }
 
-  updateEmpTel(db:Knex,id:string,tel:string){
-    return db('employee_information')
-      .update(id)
-      .where("employee_tel",tel);
-  }
-
-  delEmployee(db: Knex,id:string){
+  delEmployee(db: Knex,employee_personalId:string){
     return db('employee_information')
     .del()
-    .where('employee_personalId',id);
+    .where('employee_personalId',employee_personalId);
   }
 
 }
