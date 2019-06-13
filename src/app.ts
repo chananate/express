@@ -19,6 +19,7 @@ import { Jwt } from './models/jwt';
 import indexRoute from './routes/index';
 import loginRoute from './routes/login';
 import requestRoute from './routes/request';
+import patientInformationRoute from './routes/information/patient';
 
 // Assign router to the express.Router() instance
 const app: express.Application = express();
@@ -94,6 +95,7 @@ let checkAuth = (req: Request, res: Response, next: NextFunction) => {
 }
 
 app.use('/login', loginRoute);
+app.use('/pat-info', patientInformationRoute);
 app.use('/api', checkAuth, requestRoute);
 app.use('/', indexRoute);
 
