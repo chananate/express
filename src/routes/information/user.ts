@@ -38,6 +38,30 @@ router.get('/user-all', async (req: Request, res: Response) => {
     }
   });
 
+  router.post('/user-emp-info', async (req: Request, res: Response) => {
+    let db = req.db;
+    const tel = req.body.tel;
+    try {
+        const result = await userModel.getUserWithEmpInfo(db,tel);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+    }
+  });
+
+  router.post('/user-pat-info', async (req: Request, res: Response) => {
+    let db = req.db;
+    const tel = req.body.tel;
+    try {
+        const result = await userModel.getUserWithPatInfo(db,tel);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+    }
+  });
+
   router.get('/user-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
