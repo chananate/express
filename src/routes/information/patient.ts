@@ -14,10 +14,11 @@ const jwt = new Jwt();
 
 const router: Router = Router();
 
-router.get('/patient-info', async (req: Request, res: Response) => {
+router.get('/patient-insert', async (req: Request, res: Response) => {
   let db = req.db;
+  const data = req.body.data;
   try {
-      const result = await patientModel.getPatient(db);
+      const result = await patientModel.insertPatient(db,data);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);

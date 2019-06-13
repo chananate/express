@@ -21,6 +21,8 @@ import loginRoute from './routes/login';
 import requestRoute from './routes/request';
 import patientInformationRoute from './routes/information/patient';
 import employeeInformationRoute from './routes/information/employee';
+import userInformationRoute from './routes/information/user';
+
 
 // Assign router to the express.Router() instance
 const app: express.Application = express();
@@ -98,8 +100,10 @@ let checkAuth = (req: Request, res: Response, next: NextFunction) => {
 app.use('/login', loginRoute);
 app.use('/pat-info', patientInformationRoute); 
 app.use('/emp-info', employeeInformationRoute);
+app.use('/user-info', userInformationRoute); 
 app.use('/api', checkAuth, requestRoute);
 app.use('/', indexRoute);
+
 
 
 //error handlers

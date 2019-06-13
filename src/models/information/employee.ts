@@ -11,4 +11,9 @@ export class Employee {
     .insert(data);
   }
 
+  updateEmployee(db: Knex,data,id: string) {
+    return db('employee_information')
+      .update({ data })
+      .where("employee_personalId", id);
+}
 }
