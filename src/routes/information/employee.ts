@@ -8,6 +8,7 @@ import * as crypto from 'crypto';
 
 
 import { Jwt } from '../../models/jwt';
+import { appendFile } from 'fs';
 
 const employeeModel = new Employee();
 const jwt = new Jwt();
@@ -42,8 +43,21 @@ router.post('/employee-info', async (req: Request, res: Response) => {
 router.post('/employee-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
+  const employee_personalId = req.body.employee_personalId;
+  const employee_position = req.body.employee_position;
+  const employee_type = req.body.employee_type;
+  const employee_title = req.body.employee_title;
+  const employee_name = req.body.employee_name;
+  const employee_surname = req.body.employee_surname;
+  const employee_bd = req.body.employee_bd;
+  const employee_address = req.body.employee_address;
+  const employee_religion = req.body.employee_religion;
   try {
-      const result = await employeeModel.insertEmployee(db,data);
+      const result = await employeeModel
+      //.insertEmployee(db,data);
+      .insertEmployee(db,
+        employee_personalId,employee_position,employee_type,employee_title,
+        employee_name,employee_surname,employee_bd,employee_address,employee_religion);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
