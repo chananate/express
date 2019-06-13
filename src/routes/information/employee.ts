@@ -26,4 +26,17 @@ router.get('/employee-info', async (req: Request, res: Response) => {
 
 });
 
+router.get('/employee-insert', async (req: Request, res: Response) => {
+  let db = req.db;
+  const data = req.body.data;
+  try {
+      const result = await employeeModel.insertEmployee(db,data);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  } catch (error) {
+      console.log(error.message);
+      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+  }
+
+});
+
 export default router;
