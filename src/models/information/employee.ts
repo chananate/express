@@ -2,8 +2,13 @@ import * as Knex from 'knex';
 
 export class Employee {
 
-  getEmployee(db: Knex) {
+  getAllEmployee(db: Knex) {
     return db('employee_information');
+  }
+
+  getEmployee(db: Knex,perId:string) {
+    return db('employee_information')
+    .where(perId);
   }
 
   insertEmployee(db: Knex,data) {

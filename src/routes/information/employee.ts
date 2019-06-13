@@ -14,10 +14,10 @@ const jwt = new Jwt();
 
 const router: Router = Router();
 
-router.get('/employee-info', async (req: Request, res: Response) => {
+router.get('/employee-all', async (req: Request, res: Response) => {
   let db = req.db;
   try {
-      const result = await employeeModel.getEmployee(db);
+      const result = await employeeModel.getAllEmployee(db);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
@@ -26,7 +26,20 @@ router.get('/employee-info', async (req: Request, res: Response) => {
 
 });
 
-router.get('/employee-insert', async (req: Request, res: Response) => {
+router.post('/employee-info', async (req: Request, res: Response) => {
+  let db = req.db;
+  const perId = req.body.perId;
+  try {
+      const result = await employeeModel.getEmployee(db,perId);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  } catch (error) {
+      console.log(error.message);
+      res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+  }
+
+});
+
+router.post('/employee-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
   try {
