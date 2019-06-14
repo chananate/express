@@ -46,7 +46,6 @@ router.post("/user", async (req: Request, res: Response) => {
 });
 
 router.get("/user-insert", async (req: Request, res: Response) => {
-  router.post('/user', async (req: Request, res: Response) => {
     let db = req.db;
     const username = req.body.username;
     try {
