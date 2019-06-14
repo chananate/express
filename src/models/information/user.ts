@@ -6,6 +6,12 @@ export class User {
     return db('user');
   }
 
+  checkType(db: Knex,tel:string){
+    return db('user')
+    .select('type')
+    .where('tel',tel);
+  }
+
   getUserWithEmpInfo(db:Knex,tel:string){
     return db('user')
     .leftJoin('employee_information','user.tel','employee_information.employee_tel')

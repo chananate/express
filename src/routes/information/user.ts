@@ -45,6 +45,22 @@ router.post("/user", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/check-type", async (req: Request, res: Response) => {
+    let db = req.db;
+    const tel = req.body.tel;
+    try {
+      const result = await userModel.checkType(db, tel);
+      res.send({ ok: true, statusCode: HttpStatus.OK, rows: result[0] });
+    } catch (error) {
+      console.log(error.message);
+      res.send({
+        ok: false,
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message
+      });
+    }
+  });
+
 router.post('/user-emp-info', async (req: Request, res: Response) => {
     let db = req.db;
     const tel = req.body.tel;
