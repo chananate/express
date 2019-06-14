@@ -20,5 +20,10 @@ export class Employee {
     return db('employee_information')
       .update({ data })
       .where("employee_personalId", id);
-}
+  }
+
+  deleteEmployee(db: Knex, username: string) {
+    return db('user')
+    .where({username});
+  }
 }
