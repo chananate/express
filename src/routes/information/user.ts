@@ -65,8 +65,13 @@ router.get('/user-all', async (req: Request, res: Response) => {
   router.get('/user-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
+  const username = req.body.username;
+  const password = req.body.password;
+  const tel = req.body.tel;
+  const type = req.body.type;
   try {
-      const result = await userModel.insertUser(db,data);
+      const result = await userModel.insertUser(db,
+        username,password,tel,type);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
