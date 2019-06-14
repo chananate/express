@@ -13,8 +13,7 @@ const patientModel = new Patient();
 const jwt = new Jwt();
 
 const router: Router = Router();
-
-router.get('/patient-all', async (req: Request, res: Response) => {
+router.get('/getPatient', async (req: Request, res: Response) => {
   let db = req.db;
   try {
       const result = await patientModel.getAllPatient(db);
@@ -26,11 +25,11 @@ router.get('/patient-all', async (req: Request, res: Response) => {
 
 });
 
-router.post('/patient-info', async (req: Request, res: Response) => {
+router.post('/getPatientInfo', async (req: Request, res: Response) => {
   let db = req.db;
-  const perId = req.body.perId;
+  const Patient_personalId = req.body.Patient_personalId;
   try {
-      const result = await patientModel.getPatient(db,perId);
+      const result = await patientModel.getPatient(db,Patient_personalId);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
@@ -51,7 +50,8 @@ router.post('/patient-insert', async (req: Request, res: Response) => {
   const patient_religion = req.body.patient_religion;
   const patient_tel = req.body.patient_tel;
   try {
-      const result = await patientModel.insertPatient(db,data);
+      const result = await patientModel.insertPatient(db,patient_personalId,patient_title,
+        patient_name,patient_surname,patient_bd,patient_address,patient_religion,patient_tel);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);

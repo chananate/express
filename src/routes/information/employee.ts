@@ -103,6 +103,19 @@ router.post('/employee-del', async (req: Request, res: Response) => {
       res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
   }
 });
+  router.post('/employee-update', async (req: Request, res: Response) => {
+    let db = req.db;
+    const data = req.body.data;
+    const id = req.body.id;
 
+    try {
+        const result = await employeeModel.updateEmployee(db,data,id);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+    }
+  
+});
 
 export default router;
