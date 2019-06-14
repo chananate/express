@@ -16,7 +16,7 @@ export class Patient {
     patient_title:string,
     patient_name:string,
     patient_surname:string,
-    patient_bd:Date,
+    patient_bd:any,
     patient_address:string,
     patient_religion:string,
     patient_tel:string) 

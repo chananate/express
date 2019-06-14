@@ -1,6 +1,7 @@
 import {Employee} from '../../models/information/employee';
 /// <reference path="../../../typings.d.ts" />
 
+import * as moment from 'moment';
 import * as express from 'express';
 import { Router, Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
@@ -54,6 +55,8 @@ router.post('/employee-insert', async (req: Request, res: Response) => {
   const employee_religion = req.body.employee_religion;
   const employee_tel = req.body.employee_tel;
   try {
+    console.log(moment(employee_bd).format('DD-MM-YYYY'));
+
       const result = await employeeModel
       //.insertEmployee(db,data);
       .insertEmployee(db,

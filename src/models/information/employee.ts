@@ -19,7 +19,7 @@ export class Employee {
     employee_title:string,
     employee_name:string,
     employee_surname:string,
-    employee_bd:Date,
+    employee_bd:any,
     employee_address:string,
     employee_religion:string,
     employee_tel:string
