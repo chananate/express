@@ -28,10 +28,10 @@ export class Patient {
     );
   }
 
-  updatePatient(db: Knex,data,id: string) {
+  updatePatient(db: Knex,data,patient_personalId: string) {
     return db('patient_information')
       .update({ data })
-      .where("patient_personalId", id);
+      .where("patient_personalId", patient_personalId);
   }
 
   updatePatTel(db:Knex,patient_personalId:string,patient_tel:string){
@@ -40,10 +40,10 @@ export class Patient {
       .where("patient_tel",patient_tel);
   }
 
-  delPatient(db: Knex,id:string){
+  delPatient(db: Knex,patient_personalId:string){
     return db('patient_information')
     .del()
-    .where('patient_personalId',id);
+    .where('patient_personalId',patient_personalId);
   }
 
 }
