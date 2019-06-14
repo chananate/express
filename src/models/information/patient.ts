@@ -11,9 +11,22 @@ export class Patient {
     .where('patient_personalId',perId);
   }
 
-  insertPatient(db: Knex,data) {
+  insertPatient(db: Knex,
+    //data,
+    patient_personalId :number,
+    patient_title:string,
+    patient_name:string,
+    patient_surname:string,
+    patient_bd:Date,
+    patient_address:string,
+    patient_religion:string,
+    patient_tel:string) {
     return db('patient_information')
-    .insert(data);
+    .insert(
+      {patient_personalId,
+        patient_title,patient_name,patient_surname,
+        patient_bd,patient_address,patient_religion,patient_tel}
+    );
   }
 
   updatePatient(db: Knex,data,id: string) {
@@ -22,10 +35,10 @@ export class Patient {
       .where("patient_personalId", id);
   }
 
-  updatePatTel(db:Knex,id:string,tel:string){
+  updatePatTel(db:Knex,patient_personalId:string,patient_tel:string){
     return db('patient_information')
-      .update(id)
-      .where("patient_tel",tel);
+      .update(patient_personalId)
+      .where("patient_tel",patient_tel);
   }
 
   delPatient(db: Knex,id:string){

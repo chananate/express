@@ -42,6 +42,14 @@ router.post('/patient-info', async (req: Request, res: Response) => {
 router.post('/patient-insert', async (req: Request, res: Response) => {
   let db = req.db;
   const data = req.body.data;
+  const patient_personalId = req.body.patient_personalId;
+  const patient_title = req.body.patient_title;
+  const patient_name = req.body.patient_name;
+  const patient_surname = req.body.patient_surname;
+  const patient_bd = req.body.patient_bd;
+  const patient_address = req.body.patient_address;
+  const patient_religion = req.body.patient_religion;
+  const patient_tel = req.body.patient_tel;
   try {
       const result = await patientModel.insertPatient(db,data);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });

@@ -34,9 +34,19 @@ export class User {
     .where("username", username);
   }
 
-  insertUser(db: Knex,data) {
+  insertUser(db: Knex,
+    // data,
+    username:string,
+    password:string,
+    tel:string,
+    type:string
+    ) {
     return db('user')
-    .insert(data);
+    .insert(
+      {
+        username,password,tel,type
+      }
+    );
   }
 
   updateUser(db: Knex,data,username:string) {

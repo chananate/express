@@ -26,9 +26,11 @@ export class Employee {
     ) {
     return db('employee_information')
     //.insert(data)
-    .insert({employee_personalId,employee_type,employee_position,
+    .insert(
+      {employee_personalId,employee_type,employee_position,
       employee_title,employee_name,employee_surname,
-      employee_bd,employee_address,employee_religion,employee_tel});
+      employee_bd,employee_address,employee_religion,employee_tel}
+      );
   }
 
   updateEmployee(db: Knex,data,employee_personalId: string) {
