@@ -50,7 +50,8 @@ router.post('/patient-insert', async (req: Request, res: Response) => {
   const patient_religion = req.body.patient_religion;
   const patient_tel = req.body.patient_tel;
   try {
-      const result = await patientModel.insertPatient(db,data);
+      const result = await patientModel.insertPatient(db,patient_personalId,patient_title,
+        patient_name,patient_surname,patient_bd,patient_address,patient_religion,patient_tel);
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);

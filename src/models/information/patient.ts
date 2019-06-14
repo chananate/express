@@ -11,7 +11,7 @@ export class Patient {
     .where('patient_personalId',patientId);
   }
   
-  insertPatient(db: Knex,data) {
+  insertPatient(db: Knex, 
     patient_personalId :number,
     patient_title:string,
     patient_name:string,
@@ -19,8 +19,8 @@ export class Patient {
     patient_bd:Date,
     patient_address:string,
     patient_religion:string,
-    patient_tel:string) {
-    return db('patient_information')
+    patient_tel:string) 
+    {return db('patient_information')
     .insert(
       {patient_personalId,
         patient_title,patient_name,patient_surname,
@@ -46,9 +46,4 @@ export class Patient {
     .where('patient_personalId',id);
   }
 
-  updatePatient(db: Knex,data,id: string) {
-    return db('patient_information')
-      .update({ data })
-      .where("patient_personalId", id);
-}
 }
