@@ -12,8 +12,38 @@ export class Patient {
   }
   
   insertPatient(db: Knex,data) {
+    patient_personalId :number,
+    patient_title:string,
+    patient_name:string,
+    patient_surname:string,
+    patient_bd:Date,
+    patient_address:string,
+    patient_religion:string,
+    patient_tel:string) {
     return db('patient_information')
-    .insert(data);
+    .insert(
+      {patient_personalId,
+        patient_title,patient_name,patient_surname,
+        patient_bd,patient_address,patient_religion,patient_tel}
+    );
+  }
+
+  updatePatient(db: Knex,data,id: string) {
+    return db('patient_information')
+      .update({ data })
+      .where("patient_personalId", id);
+  }
+
+  updatePatTel(db:Knex,patient_personalId:string,patient_tel:string){
+    return db('patient_information')
+      .update(patient_personalId)
+      .where("patient_tel",patient_tel);
+  }
+
+  delPatient(db: Knex,id:string){
+    return db('patient_information')
+    .del()
+    .where('patient_personalId',id);
   }
 
   updatePatient(db: Knex,data,id: string) {

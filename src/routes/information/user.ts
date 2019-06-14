@@ -46,39 +46,73 @@ router.post("/user", async (req: Request, res: Response) => {
 });
 
 router.get("/user-insert", async (req: Request, res: Response) => {
-  let db = req.db;
-  const data = req.body.data;
-  try {
-    const result = await userModel.insertUser(db, data);
-    res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
-  } catch (error) {
-    console.log(error.message);
-    res.send({
-      ok: false,
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: error.message
+  router.post('/user', async (req: Request, res: Response) => {
+    let db = req.db;
+    const username = req.body.username;
+    try {
+        const result = await userModel.postUser(db,username);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message
+      });
+    }
+  });
+
+router.post('/user-emp-info', async (req: Request, res: Response) => {
+    let db = req.db;
+    const tel = req.body.tel;
+    try {
+        const result = await userModel.getUserWithEmpInfo(db,tel);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message 
+      });
+    }
+  });
+
+router.post('/user-pat-info', async (req: Request, res: Response) => {
+    let db = req.db;
+    const tel = req.body.tel;
+    try {
+        const result = await userModel.getUserWithPatInfo(db,tel);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message 
+      });
+    }
+  });
+
+  router.get('/user-insert', async (req: Request, res: Response) => {
+    let db = req.db;
+    const data = req.body.data;
+    try {
+        const result = await userModel.insertUser(db, data);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+  }  catch (error) {
+      console.log(error.message);
+      res.send({
+      ok: false,statusCode: HttpStatus.INTERNAL_SERVER_ERROR,message: error.message
     });
   }
+  });
+
+  router.get('/user-update', async (req: Request, res: Response) => {
+    let db = req.db;
+    const data = req.body.data;
+    const username = req.body.username;
+    try {
+        const result = await userModel.updateUser(db,data,username);
+        res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
+    } catch (error) {
+        console.log(error.message);
+        res.send({ ok: false, statusCode: HttpStatus.INTERNAL_SERVER_ERROR, message: error.message });
+    }
 });
 
-router.get("/user-update", async (req: Request, res: Response) => {
-  let db = req.db;
-  const data = req.body.data;
-  const username = req.body.username;
-  try {
-    const result = await userModel.updateUser(db, data, username);
-    res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
-  } catch (error) {
-    console.log(error.message);
-    res.send({
-      ok: false,
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: error.message
-    });
-  }
-});
-
-router.get("/user-delete", async (req: Request, res: Response) => {
+  router.get('/user-delete', async (req: Request, res: Response) => {
   let db = req.db;
   const username = req.body.username;
   try {
