@@ -8,6 +8,7 @@ import * as crypto from 'crypto';
 
 
 import { Jwt } from '../../models/jwt';
+import * as moment from 'moment';
 
 const patientModel = new Patient();
 const jwt = new Jwt();
@@ -16,7 +17,10 @@ const router: Router = Router();
 router.get('/getPatient', async (req: Request, res: Response) => {
   let db = req.db;
   try {
-      const result = await patientModel.getAllPatient(db);
+    
+    const result = await patientModel.getAllPatient(db);
+    //console.log(moment('2019-01-01').format('DD-MM-YYYY'));
+    
       res.send({ ok: true, statusCode: HttpStatus.OK, rows: result });
   } catch (error) {
       console.log(error.message);
