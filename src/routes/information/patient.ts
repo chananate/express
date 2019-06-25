@@ -49,10 +49,12 @@ router.post('/patient-insert', async (req: Request, res: Response) => {
   const patient_title = req.body.patient_title;
   const patient_name = req.body.patient_name;
   const patient_surname = req.body.patient_surname;
-  const patient_bd = req.body.patient_bd;
+  var   patient_bd = req.body.patient_bd;
   const patient_address = req.body.patient_address;
   const patient_religion = req.body.patient_religion;
   const patient_tel = req.body.patient_tel;
+
+  patient_bd  = moment('patient_bd').format('DD-MM-YYYY');
   try {
       const result = await patientModel.insertPatient(db,patient_personalId,patient_title,
         patient_name,patient_surname,patient_bd,patient_address,patient_religion,patient_tel);
